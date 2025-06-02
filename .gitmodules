@@ -1,6 +1,6 @@
 [submodule "cliente"]
     path = cliente
-    url = https://github.com/sga-encoder/404_Luck_Not_Found_Cliente.git
+    url = git@github.com:sga-encoder/404_Luck_Not_Found_Cliente.git
 [submodule "servidor"]
     path = servidor
-    url = https://github.com/sga-encoder/404_Luck_Not_Found_Servidor.git
+    url = git@github.com:sga-encoder/404_Luck_Not_Found_Servidor.git
