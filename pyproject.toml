@@ -1,0 +1,36 @@
+[project]
+name = "casino-virtual-unificado"
+version = "1.0.0"
+description = "Proyecto unificado de Casino Virtual - Cliente y Servidor"
+authors = [
+    {name = "sga-encoder", email = "sebastian.garzon54795@ucaldas.edu.co"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+
+[tool.poetry]
+name = "casino-virtual-unificado"
+version = "1.0.0"
+description = "Proyecto unificado de Casino Virtual - Cliente y Servidor"
+authors = ["sga-encoder <sebastian.garzon54795@ucaldas.edu.co>"]
+readme = "README.md"
+packages = [
+    {include = "cliente"},
+    {include = "servidor/src"}
+]
+
+[tool.poetry.dependencies]
+python = ">=3.13"
+asciimatics = ">=1.15.0,<2.0.0"
+pyfiglet = ">=1.0.2,<2.0.0"
+firebase-admin = ">=6.8.0,<7.0.0"
+python-dotenv = ">=1.1.0,<2.0.0"
+google-cloud-firestore = ">=2.20.2,<3.0.0"
+pyrebase = "^4.8.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+casino = "main:run"
