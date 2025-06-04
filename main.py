@@ -16,7 +16,8 @@ sys.path.append(os.path.join(ROOT_DIR, 'cliente'))
 from cliente.screens.inicio import inicio
 from cliente.screens.home import home
 from cliente.screens.juegos.poker import poker
-from cliente.screens.juegos.blackjack import blackjack
+from cliente.screens.juegos.blackjack.blackjack_inicio import blackjack_inicio
+from cliente.screens.juegos.blackjack.blackjack_juego import blackjack_juego
 from cliente.screens.juegos.knucklebones.knucklebones import knucklebones
 
 def manejador_de_pantalla(screen):
@@ -36,7 +37,10 @@ def manejador_de_pantalla(screen):
             if card == 'poker':
                 poker(screen)
             elif card == 'blackjack':
-                blackjack(screen)
+                resultado= blackjack_inicio(screen)
+                if resultado == 'iniciar blackjack':
+                    blackjack_juego(screen)
+                
             elif card == 'knucklebones':
                 knucklebones(screen)
                 
