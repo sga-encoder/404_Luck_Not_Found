@@ -1,16 +1,29 @@
 #!/usr/bin/env python
 from asciimatics.screen import Screen
 
+from servidor.src.model.salaDeJuego.juego import KnuckleBones
+from servidor.src.model.usuario import Usuario
+
 """
 Archivo de desarrollo para el Casino Virtual 404 Luck Not Found
 Contiene herramientas de debug y opciones de desarrollo
 """
 from cliente.screens.forms.login_form import login_form
 from cliente.screens.juegos.knucklebones.knucklebones_juego import knucklebones_juego
-def dev(screen):
+from cliente.utils.user_session import UserSessionManager
+def dev():
     """Función que recibe una instancia de screen"""
-    knucklebones_juego(screen)
+    # knucklebones_juego(screen)
+    juego = KnuckleBones()
+    data_user = UserSessionManager().load_user_session()
+    user_local = Usuario.from_dict(data_user)
+    bot = Usuario.crear_usuario_local('botk', 'ktob')
+    juego.set_jugadores([user_local, bot])
+    juego.inicializar_juego('KnuckleBones')
+    
+
 
 if __name__ == "__main__":
     # Usar Screen.wrapper() para manejar la inicialización y limpieza
-    Screen.wrapper(dev)
+    # Screen.wrapper(dev)
+    dev()
