@@ -6,7 +6,7 @@ from cliente.screens.home import home
 from cliente.screens.juegos.poker import poker
 from cliente.screens.juegos.blackjack.blackjack_inicio import blackjack_inicio
 from cliente.screens.juegos.blackjack.blackjack_juego import blackjack_juego
-from cliente.screens.juegos.knucklebones.knucklebones import knucklebones
+from cliente.screens.juegos.knucklebones.knucklebones_juego import knucklebones_juego
 from cliente.utils.events import add_key_listener
 from cliente.utils.helpers import create_card, font_tester, font_tester_recomded
 from cliente.utils.printers import print_button, print_text
@@ -55,7 +55,7 @@ def main(screen):
             # CAMBIO: Usar directamente blackjack_inicio, que ya maneja la navegación interna
             blackjack_inicio(screen)
         elif card == 'knucklebones':
-            knucklebones(screen)
+            knucklebones_juego(screen)
 
 def main_dev(screen):
     # Para desarrollo directo del BlackJack
