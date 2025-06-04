@@ -15,12 +15,12 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 from . import cliente
 from . import servidor
 from . import main
-from . import main_dev
+from . import main_dev_miguel
 
 __all__ = [
     'cliente',
     'servidor', 
     'main',
-    'main_dev',
+    'main_dev_miguel',
     'BASE_DIR'
 ]
