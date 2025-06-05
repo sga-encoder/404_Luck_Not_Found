@@ -6,5 +6,6 @@
     "total_apostado": 0.0,
     "correo": "reno@gmail.com",
     "contraseña": "lola2020",
-    "historial": []
+    "historial": [],
+    "vip": false
 }

@@ -5,6 +5,7 @@ Gestor de pantallas y punto de entrada principal
 """
 import os
 import sys
+import asyncio
 from asciimatics.screen import Screen
 
 from cliente.screens.forms import login_hub, register_form
@@ -12,6 +13,7 @@ from cliente.screens.forms.login_form import login_form
 from cliente.screens.juegos.knucklebones.knucklebones_juego import knucklebones_juego
 from cliente.screens.juegos.knucklebones.knucklebones_inicio import knucklebones_inicio
 from cliente.utils.user_session import UserSessionManager
+from cliente.utils.async_wrapper import async_screen_wrapper
 
 # Agregar directorios al path de Python
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -25,7 +27,8 @@ from cliente.screens.juegos.poker import poker
 from cliente.screens.juegos.blackjack.blackjack_inicio import blackjack_inicio
 from cliente.screens.juegos.blackjack.blackjack_juego import blackjack_juego
 
-def manejador_de_pantalla(screen):
+@async_screen_wrapper
+async def manejador_de_pantalla(screen):
     """
     Gestor principal de pantallas del Casino Virtual
     Controla el flujo entre login, home y juegos
@@ -58,8 +61,9 @@ def manejador_de_pantalla(screen):
                     blackjack_juego(screen)
                 
             elif resultado_home == 'knucklebones':
-                resultado_knucklebones = knucklebones_inicio(screen)
-                if resultado_knucklebones == 'iniciar knucklebones':
+                # Para funciones async, las ejecutamos directamente con await
+                resultado_knucklebones = await knucklebones_inicio(screen)
+                if resultado_knucklebones:
                     knucklebones_juego(screen)
 
     except Exception as e:
@@ -67,6 +71,21 @@ def manejador_de_pantalla(screen):
         import traceback
         traceback.print_exc()
 
+def wrapper_asincrono(screen):
+    """
+    Wrapper para manejar funciones async con asciimatics
+    """
+    # Crear un nuevo loop de eventos si no existe uno
+    try:
+        loop = asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+    
+    # Ejecutar la función async
+    return loop.run_until_complete(manejador_de_pantalla(screen))
+
 if __name__ == "__main__":
     print("Iniciando Casino Virtual 404 Luck Not Found...")
+    # Ahora puedes usar directamente el decorador
     Screen.wrapper(manejador_de_pantalla)
