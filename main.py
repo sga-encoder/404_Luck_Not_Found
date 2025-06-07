@@ -37,13 +37,13 @@ async def manejador_de_pantalla(screen):
         # Iniciar con pantalla de login/inicio
         session_manager = UserSessionManager()
         resultado = False
-        while not session_manager.has_active_session():
+        while not session_manager.has_active_session():            
             resultado = inicio(screen)
             resultado_login_hub = login_hub(screen)
             if resultado_login_hub == 'registro':
-                register_form(screen)
+                await register_form(screen)
             elif resultado_login_hub == 'iniciar_sesion':
-                login_form(screen)
+                await login_form(screen)
                 
         if session_manager.has_active_session():
             resultado = inicio(screen)
@@ -62,9 +62,11 @@ async def manejador_de_pantalla(screen):
                 
             elif resultado_home == 'knucklebones':
                 # Para funciones async, las ejecutamos directamente con await
-                resultado_knucklebones = await knucklebones_inicio(screen)
-                if resultado_knucklebones:
-                    knucklebones_juego(screen)
+                resultado_knucklebones, id_knucklebones, user_knucklebones, juego_knucklebones = await knucklebones_inicio(screen)
+                if resultado_knucklebones and id_knucklebones is not None:
+                    knucklebones_juego(screen, id_knucklebones, user_knucklebones, juego_knucklebones)
+
+                    
 
     except Exception as e:
         print(f"Error en el gestor de pantallas: {e}")

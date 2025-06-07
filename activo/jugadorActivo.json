@@ -1,11 +1,11 @@
 {
-    "id": "SG790",
-    "nombre": "sebastian",
-    "apellido": "garzon arias",
-    "saldo": 0.0,
+    "id": "MC404",
+    "nombre": "miguel",
+    "apellido": "correa",
+    "saldo": 1000.0,
     "total_apostado": 0.0,
-    "correo": "reno@gmail.com",
+    "correo": "josemiguelcorra@gmail.com",
     "contraseña": "lola2020",
     "historial": [],
-    "vip": false
+    "vip": true
 }
